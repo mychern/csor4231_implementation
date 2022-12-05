@@ -3,14 +3,15 @@
 template <typename T>
 vector<T> merge(vector<T> arr1, vector<T> arr2) {
     // Initialize.
-    int i = 1;
-    int j = 1;
-    int n = arr1.size() + arr2.size();
+    int i = 0;
+    int j = 0;
+    int n1 = arr1.size();
+    int n2 = arr2.size();
     vector<T> res;
 
     // Iterate.
-    for (int k = 0; k < n; k++) {
-        if (arr1[i] < arr2[j]) {
+    for (int k = 0; k < n1+n2; k++) {
+        if (i < n1 && (j >= n2 || arr1[i] < arr2[j])) {
             res[k] = arr1[i];
             i++;
         } else {
@@ -25,14 +26,15 @@ vector<T> merge(vector<T> arr1, vector<T> arr2) {
 template <typename T>
 vector<T> mergeSort(vector<T> arr) {
     // Initialize.
-    int mid = arr.size()/2;
+    int size = arr.size();
+    int mid = (size + 1) / 2;
 
     // Base case.
-    if (arr.size() <= 1) {
+    if (size <= 1) {
         return arr;
     }
 
     // Inductive cases.
-    return merge<int>(mergeSort<int>(slice()),
-                      mergeSort<int>(arr, mid+1, j));
+    return merge<int>(mergeSort<int>(slice(arr, 1, mid)),
+                      mergeSort<int>(slice(arr, mid+1, size-1)));
 }

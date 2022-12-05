@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "../../util/slice_util.cc"
+#include "../../util/print_vector_util.cc"
 
 using std::cout;
 using std::vector;
