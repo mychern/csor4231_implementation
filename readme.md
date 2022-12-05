@@ -5,4 +5,4 @@ That is, we discussed algorithms and design approaches without going into detail
 such algorithms with my free time.
 
 ### Running list of topics already implemented ###
-1. Merge sort
+1. Sorting: mergeSort, insertionSort, selectioinSort, bubbleSort.
