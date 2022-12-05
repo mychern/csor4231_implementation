@@ -1,4 +1,3 @@
-#include "print_vector_util.h"
 #include "print_vector_util.cc"
 
 int main() {
