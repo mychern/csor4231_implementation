@@ -10,7 +10,7 @@ int main() {
     // Tests for merge(arr, p, q, r) function.
     cout<<"Merge function output test result:"<<endl;
     merge<int>(test_1, 0, 2, 5);
-    printVector<int>(test_1);
+    printVectorSameLine<int>(test_1);
     
     // Test for mergeSort(arr, p, r) function.
     mergeSort<int>(test_1, 0, test_1.size()-1);
@@ -19,13 +19,27 @@ int main() {
     mergeSort<char>(test_4, 0, test_4.size()-1);
 
     cout<<"First test result:"<<endl;
-    printVector<int>(test_1);
+    printVectorSorted<int>(test_1);
     cout<<"Second test result:"<<endl;
-    printVector<int>(test_2);
+    printVectorSorted<int>(test_2);
     cout<<"Third test result:"<<endl;
-    printVector<int>(test_3);
-    cout<<"Fourth test for another data type:"<<endl;
-    printVector<char>(test_4);
+    printVectorSorted<int>(test_3);
+    cout<<"Fourth test for another data type (char):"<<endl;
+    printVectorSorted<char>(test_4);
+
+    /*
+    Output (copied from terminal):
+    Merge function output test result:
+    1 2 3 4 5 6
+    First test result:
+    1 <= 2 <= 3 <= 4 <= 5 <= 6
+    Second test result:
+    1 <= 2 <= 3 <= 4
+    Third test result:
+    -5 <= -4 <= -2 <= 1 <= 1 <= 2 <= 2 <= 3 <= 5
+    Fourth test for another data type (char):
+    a <= b <= c <= d <= j <= z
+    */
 
     return 1;
 }
