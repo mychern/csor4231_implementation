@@ -1,40 +1,42 @@
 #include "merge_sort.h"
 
 template <typename T>
-vector<T> merge(vector<T> arr1, vector<T> arr2) {
+void merge(vector<T>& arr, int p, int q, int r) {
     // Initialize.
-    int i = 0;
-    int j = 0;
-    int n1 = arr1.size();
-    int n2 = arr2.size();
-    vector<T> res;
+    // Note that the partition is arr[p,q] and arr[q+1,r].
+    int n1 = q-p+1, n2 = r-q, n = r-p+1;
+    int i=0, j=0;
+    vector<int> L(n1);
+    vector<int> U(n2);
+
+    for (int i=0; i<n1; i++) {
+        L[i]=arr[p+i];
+    }
+    for (int i=0; i<n2; i++) {
+        U[i]=arr[q+i+1];
+    }
 
     // Iterate.
-    for (int k = 0; k < n1+n2; k++) {
-        if (i < n1 && (j >= n2 || arr1[i] < arr2[j])) {
-            res[k] = arr1[i];
+    for (int k = 0; k < n; k++) {
+        if (i < n1 && (j >= n2 || L[i] < U[j])) {
+            arr[p+k] = L[i];
             i++;
         } else {
-            res[k] = arr2[j];
+            arr[p+k] = U[j];
             j++;
         }
     }
-
-    return res;
 }
 
 template <typename T>
-vector<T> mergeSort(vector<T> arr) {
-    // Initialize.
-    int size = arr.size();
-    int mid = (size + 1) / 2;
+void mergeSort(vector<T>& arr, int p, int r) {
+    if (p < r) {
+        int mid = p + (r-p)/2;
+        // Recursive calls.
+        mergeSort<T>(arr, p, mid);
+        mergeSort<T>(arr, mid+1, r);
 
-    // Base case.
-    if (size <= 1) {
-        return arr;
+        // Merge to sort.
+        merge(arr, p, mid, r);
     }
-
-    // Inductive cases.
-    return merge<int>(mergeSort<int>(slice(arr, 1, mid)),
-                      mergeSort<int>(slice(arr, mid+1, size-1)));
 }
